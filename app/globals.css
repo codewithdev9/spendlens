@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --surface-2: #1a1a24;
+  --surface-3: #22222f;
+  --border: #2a2a3a;
+  --border-bright: #3a3a50;
+  --text: #e8e8f0;
+  --text-muted: #8888aa;
+  --accent: #00d4aa;
+  --accent-dim: rgba(0,212,170,0.12);
+  --accent-2: #7c6af5;
+  --accent-2-dim: rgba(124,106,245,0.12);
+  --danger: #ff4f6a;
+  --warning: #ffaa00;
+  --success: #00d4aa;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--surface); }
+::-webkit-scrollbar-thumb { background: var(--border-bright); border-radius: 3px; }
+::selection { background: var(--accent-dim); color: var(--accent); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--accent-dim); }
+  50% { box-shadow: 0 0 40px rgba(0,212,170,0.25), 0 0 80px rgba(0,212,170,0.1); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.animate-fade-up { animation: fadeUp 0.6s ease forwards; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.shimmer-text {
+  background: linear-gradient(90deg, var(--accent), #fff, var(--accent-2), var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+.grid-bg {
+  background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+.card-elevated { background: var(--surface-2); border: 1px solid var(--border-bright); border-radius: 12px; }
+
+.ticker-wrap { overflow: hidden; }
+.ticker { display: flex; width: max-content; animation: ticker 30s linear infinite; }
